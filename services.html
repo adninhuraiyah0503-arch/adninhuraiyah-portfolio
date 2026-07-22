@@ -236,15 +236,132 @@
             cursor: pointer;
             z-index: 10;
         }
-        .modal-video {
+        /* Animated background placeholders */
+        .modal-visual {
             width: 100%;
             height: 220px;
             margin: 8px 0 22px;
             border-radius: 16px;
-            object-fit: cover;
-            background: rgba(16, 185, 129, 0.2);
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            overflow: hidden;
+            position: relative;
         }
+
+        .modal-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(-45deg, #1a2f2a, #0f5a3f, #16a34a, #1a2f2a);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            z-index: 1;
+        }
+
+        .modal-visual::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+            animation: pulse 4s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        .modal-visual span {
+            position: relative;
+            z-index: 3;
+            font-size: 48px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Specific gradient animations */
+        #carbon-visual {
+            background: linear-gradient(-45deg, #1a3a2a, #0d5a3f, #10b981, #1a3a2a);
+            background-size: 400% 400%;
+            animation: carbonFlow 10s ease infinite;
+        }
+
+        @keyframes carbonFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        #data-visual {
+            background: linear-gradient(-45deg, #1a2540, #0f1f4a, #3b82f6, #1a2540);
+            background-size: 400% 400%;
+            animation: dataFlow 10s ease infinite;
+        }
+
+        @keyframes dataFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        #climate-visual {
+            background: linear-gradient(-45deg, #1a2a4a, #0f3a5f, #06b6d4, #1a2a4a);
+            background-size: 400% 400%;
+            animation: climateFlow 10s ease infinite;
+        }
+
+        @keyframes climateFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        #report-visual {
+            background: linear-gradient(-45deg, #2a1f3a, #3a2a4a, #a855f7, #2a1f3a);
+            background-size: 400% 400%;
+            animation: reportFlow 10s ease infinite;
+        }
+
+        @keyframes reportFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        #visual-visual {
+            background: linear-gradient(-45deg, #3a2a1a, #4a3a2a, #f97316, #3a2a1a);
+            background-size: 400% 400%;
+            animation: visualFlow 10s ease infinite;
+        }
+
+        @keyframes visualFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .modal-content h2 {
             margin: 0 0 16px;
             font-size: clamp(28px, 4vw, 38px);
@@ -407,20 +524,9 @@
         <article class="modal-content">
             <button class="modal-close" aria-label="Close">×</button>
             <p class="eyebrow">CARBON & BIOMASS ANALYSIS</p>
-            <video
-                class="modal-video"
-                autoplay
-                muted
-                loop
-                playsinline
-                controls
-            >
-                <source
-                    src="https://videos.coverr.co/videos/5a32e0be-fe0f-4223-9db9-e7cfc7dd9d2c/preview"
-                    type="video/mp4"
-                />
-                Your browser does not support video playback.
-            </video>
+            <div class="modal-visual" id="carbon-visual">
+                <span>🌿</span>
+            </div>
             <h2>From field measurements to reliable carbon estimates.</h2>
             <p>
                 I organise tree measurement data, apply suitable allometric
@@ -439,20 +545,9 @@
         <article class="modal-content">
             <button class="modal-close" aria-label="Close">×</button>
             <p class="eyebrow">ENVIRONMENTAL DATA ANALYSIS</p>
-            <video
-                class="modal-video"
-                autoplay
-                muted
-                loop
-                playsinline
-                controls
-            >
-                <source
-                    src="https://videos.coverr.co/videos/8d4e8c2a-4f2b-4e5c-9d1a-8f3e2c1b5a9d/preview"
-                    type="video/mp4"
-                />
-                Your browser does not support video playback.
-            </video>
+            <div class="modal-visual" id="data-visual">
+                <span>📊</span>
+            </div>
             <h2>Making complex environmental datasets understandable.</h2>
             <p>
                 I examine ecological and climate data with a focus on patterns
@@ -470,20 +565,9 @@
         <article class="modal-content">
             <button class="modal-close" aria-label="Close">×</button>
             <p class="eyebrow">CLIMATE SYSTEM INTERPRETATION</p>
-            <video
-                class="modal-video"
-                autoplay
-                muted
-                loop
-                playsinline
-                controls
-            >
-                <source
-                    src="https://videos.coverr.co/videos/3f7e9c1a-2b5d-4a8f-9e3c-7d2a1f5b8c9e/preview"
-                    type="video/mp4"
-                />
-                Your browser does not support video playback.
-            </video>
+            <div class="modal-visual" id="climate-visual">
+                <span>🌍</span>
+            </div>
             <h2>Connecting atmospheric processes to meaningful explanations.</h2>
             <p>
                 I translate feedback mechanisms, circulation patterns, and
@@ -501,20 +585,9 @@
         <article class="modal-content">
             <button class="modal-close" aria-label="Close">×</button>
             <p class="eyebrow">SCIENTIFIC REPORTING & DOCUMENTATION</p>
-            <video
-                class="modal-video"
-                autoplay
-                muted
-                loop
-                playsinline
-                controls
-            >
-                <source
-                    src="https://videos.coverr.co/videos/7a3b1f4e-9c2d-4b8a-5f1e-3d7c2a9b1f5e/preview"
-                    type="video/mp4"
-                />
-                Your browser does not support video playback.
-            </video>
+            <div class="modal-visual" id="report-visual">
+                <span>📋</span>
+            </div>
             <h2>Evidence should be as easy to follow as it is to produce.</h2>
             <p>
                 I structure scientific work so readers can understand the
@@ -532,20 +605,9 @@
         <article class="modal-content">
             <button class="modal-close" aria-label="Close">×</button>
             <p class="eyebrow">DATA VISUALISATION</p>
-            <video
-                class="modal-video"
-                autoplay
-                muted
-                loop
-                playsinline
-                controls
-            >
-                <source
-                    src="https://videos.coverr.co/videos/2e5f8a1b-7d3c-4a9f-1e2f-5c8b3a7d9f2e/preview"
-                    type="video/mp4"
-                />
-                Your browser does not support video playback.
-            </video>
+            <div class="modal-visual" id="visual-visual">
+                <span>📈</span>
+            </div>
             <h2>Clear visuals give evidence a stronger voice.</h2>
             <p>
                 I design charts and visual outputs around the scientific question,
